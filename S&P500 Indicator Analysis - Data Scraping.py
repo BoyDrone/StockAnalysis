@@ -50,7 +50,7 @@ def save_sp500_tickers():
         pickle.dump(tickers, f)
     return tickers
 
-save_sp500_tickers()
+#save_sp500_tickers()
 
 def get_data_from_yahoo(reload_sp500=False):
     print("Updating price database. (2 of 11)")
@@ -59,9 +59,13 @@ def get_data_from_yahoo(reload_sp500=False):
     start = dt.datetime(startyear, 1, 1)
     end = dt.datetime.now()
     MAX_ATTEMPTS = 1
+    
+    #tickerdata path on github
+    ##https://github.com/BoyDrone/StockAnalysis/tree/main/tickerdata
 
-    df_tickerpull = pd.read_csv('//192.168.1.13/Server/OTHER/Investing/Python/Projects/Reference_data/yahootickersymbolsUSA.csv')
-    df_tickerpull = df_tickerpull.set_index('ticker') #, inplace=True)
+    #df_tickerpull = pd.read_csv('//192.168.1.13/Server/OTHER/Investing/Python/Projects/Reference_data/yahootickersymbolsUSA.csv')
+    df_tickerpull = pd.read_csv('https://github.com/BoyDrone/StockAnalysis/tree/main/tickerdata/yahootickersymbolsUSA.csv')
+    #df_tickerpull = df_tickerpull.set_index('ticker') #, inplace=True)
     print(df_tickerpull)
     tickers = df_tickerpull.index #this outputs the correct weight
     #print(tickers)
@@ -96,7 +100,7 @@ def get_data_from_yahoo(reload_sp500=False):
             open('//192.168.1.13/Server/OTHER/Investing/Python/Projects/Reference_data/stock_dfs/NO DATA FOR THIS TICKER ON YAHOO ' + ticker + '.txt', 'a').close()
             print(e)
 
-get_data_from_yahoo()
+#get_data_from_yahoo()
          
 def save_sp500_tickersslickchart(): #this runs but the file is not used at the moment, it will be used in the future for weighting of the data
     print("Gathering S&P500 weighting. (3 of 11)")
